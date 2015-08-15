@@ -5,3 +5,13 @@
 .DS_Store
 /build
 /captures
+
+# Files for the Dalvik VM
+*.dex
+
+# Generated files
+bin/
+gen/
+
+# Log Files
+*.log
