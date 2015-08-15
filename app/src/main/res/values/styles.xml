@@ -1,0 +1,72 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/main_blue</item>
+    </style>
+
+    <style name="Theme_Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+    </style>
+
+
+    <style name="TextoBlack">
+        <item name="android:textColor">@android:color/black</item>
+        <!--<item name="fontPath">fonts/ProximaNova-Regular.otf</item>-->
+    </style>
+    <!--texto blanco de tamaño 14sp-->
+    <style name="TextoBlack.Small">
+        <item name="android:textSize">@dimen/textoSmall</item>
+    </style>
+    <!--texto blanco de tamaño 16sp-->
+    <style name="TextoBlack.Medium">
+        <item name="android:textSize">@dimen/textoMedium</item>
+    </style>
+    <style name="TextoBlack.Medium.Bold">
+        <item name="android:textStyle">bold</item>
+        <!--<item name="fontPath">fonts/ProximaNova-Bold.otf</item>-->
+    </style>
+    <!--texto blanco de tamaño 18sp-->
+    <style name="TextoBlack.Large">
+        <item name="android:textSize">@dimen/textoLarge</item>
+    </style>
+
+
+    <style name="TextoWhite">
+        <item name="android:textColor">@android:color/white</item>
+        <!--<item name="fontPath">fonts/ProximaNova-Regular.otf</item>-->
+    </style>
+    <!--texto blanco de tamaño 14sp-->
+    <style name="TextoWhite.Small">
+        <item name="android:textSize">@dimen/textoSmall</item>
+    </style>
+    <style name="TextoWhite.Small.Italic">
+        <item name="android:textStyle">italic</item>
+        <!--<item name="fontPath">fonts/ProximaNova-RegularItalic.otf</item>-->
+    </style>
+    <style name="TextoWhite.Small.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="fontPath">fonts/ProximaNova-Bold.otf</item>
+    </style>
+    <!--texto blanco de tamaño 16sp-->
+    <style name="TextoWhite.Medium">
+        <item name="android:textSize">@dimen/textoMedium</item>
+    </style>
+    <style name="TextoWhite.Medium.Bold">
+        <item name="android:textStyle">bold</item>
+        <!--<item name="fontPath">fonts/ProximaNova-Bold.otf</item>-->
+    </style>
+    <!--texto blanco de tamaño 18sp-->
+    <style name="TextoWhite.Large">
+        <item name="android:textSize">@dimen/textoLarge</item>
+    </style>
+    <style name="TextoWhite.Large.Bold">
+        <item name="android:textStyle">bold</item>
+        <!--<item name="fontPath">fonts/ProximaNova-Bold.otf</item>-->
+    </style>
+
+</resources>
