@@ -42,9 +42,11 @@ public class RutaDataSource {
 
         ruta.setId(cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_ID)));
         ruta.setTitle(cursor.getString(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_TITLE)));
+        ruta.setDescription(cursor.getString(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_DESCRIPCION)));
+        ruta.setTags(cursor.getString(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_TAGS)));
         ruta.setState(cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_ESTADO)));
-        ruta.setTimestampStart(cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_INICIO)));
-        ruta.setTimestampEnd(cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_FIN)));
+        ruta.setTimestampStart(cursor.getLong(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_INICIO)));
+        ruta.setTimestampEnd(cursor.getLong(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_FIN)));
 
         return ruta;
     }
@@ -53,6 +55,8 @@ public class RutaDataSource {
         ContentValues values = new ContentValues();
 
         values.put(LocalSQLiteHelper.COLUMN_RUTAS_TITLE, ruta.getTitle());
+        values.put(LocalSQLiteHelper.COLUMN_RUTAS_DESCRIPCION, ruta.getDescription());
+        values.put(LocalSQLiteHelper.COLUMN_RUTAS_TAGS, ruta.getTags());
         values.put(LocalSQLiteHelper.COLUMN_RUTAS_ESTADO, ruta.getState());
         values.put(LocalSQLiteHelper.COLUMN_RUTAS_INICIO, ruta.getTimestampStart());
 
@@ -168,8 +172,36 @@ public class RutaDataSource {
         ContentValues values = new ContentValues();
 
         values.put(LocalSQLiteHelper.COLUMN_RUTAS_ESTADO, 0);
+        values.put(LocalSQLiteHelper.COLUMN_RUTAS_FIN, System.currentTimeMillis());
 
         database.update(LocalSQLiteHelper.TABLE_RUTAS, values, LocalSQLiteHelper.COLUMN_RUTAS_ID + " = " + idRuta, null);
     }
 
+
+
+    public int getLastRuta() {
+        int idRuta = 0;
+
+        String QUERY = "SELECT id FROM mis_rutas ORDER BY id DESC LIMIT 1";
+
+        try{
+
+            Cursor cursor = database.rawQuery(QUERY, null);
+
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                idRuta = cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_RUTAS_ID));
+                cursor.moveToNext();
+            }
+
+            // Make sure to close the cursor
+            cursor.close();
+
+            return idRuta;
+
+        }catch (Exception e){
+            LogTigre.e(TAG, "No hay ruta", e);
+            return idRuta;
+        }
+    }
 }

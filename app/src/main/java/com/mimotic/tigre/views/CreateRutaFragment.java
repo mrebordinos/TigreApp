@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mimotic.tigre.R;
+import com.mimotic.tigre.common.settings.SettingsConstants;
 import com.mimotic.tigre.model.Ruta;
 import com.mimotic.tigre.model.db.datasource.RutaDataSource;
 import com.mimotic.tigre.service.TrackerService;
@@ -30,22 +31,31 @@ public class CreateRutaFragment extends TigreFragment {
 
 
         final EditText inputRuta = (EditText)rootView.findViewById(R.id.input_title_ruta);
+        final EditText inputDescrip = (EditText)rootView.findViewById(R.id.input_descrip_ruta);
+        final EditText inputTags = (EditText)rootView.findViewById(R.id.input_tags_ruta);
 
         Button btnInitRuta = (Button)rootView.findViewById(R.id.btn_init);
         btnInitRuta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String titleRuta = inputRuta.getText().toString().trim();
+                String descripRuta = inputDescrip.getText().toString().trim();
+                String tagsRuta = inputTags.getText().toString().trim();
 
                 Ruta ruta = new Ruta();
                 ruta.setTitle(titleRuta);
+                ruta.setDescription(descripRuta);
+                ruta.setTags(tagsRuta);
                 ruta.setState(1);
                 ruta.setTimestampStart(System.currentTimeMillis());
 
                 RutaDataSource rutaDataSource = new RutaDataSource(getActivity());
                 rutaDataSource.open();
-                rutaDataSource.createRuta(ruta);
+                int idRuta = rutaDataSource.createRuta(ruta);
                 rutaDataSource.close();
+
+                SettingsConstants.setIsRouting(getActivity(), true);
+                SettingsConstants.setIdRuta(getActivity(), idRuta);
 
                 Intent intent = new Intent(getActivity(), TrackerService.class);
                 getActivity().startService(intent);

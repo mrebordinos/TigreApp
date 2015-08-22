@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_colores">
+        <item>Rojo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Amarillo</item>
+    </string-array>
+
+
+    <string-array name="array_grosor">
+        <item>2 px</item>
+        <item>4 px</item>
+        <item>6 px</item>
+        <item>8 px</item>
+        <item>10 px</item>
+    </string-array>
+
+</resources>

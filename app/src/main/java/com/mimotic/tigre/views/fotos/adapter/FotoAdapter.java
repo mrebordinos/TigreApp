@@ -1,27 +1,31 @@
-package com.mimotic.tigre.views.adapter;
+package com.mimotic.tigre.views.fotos.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mimotic.tigre.R;
+import com.mimotic.tigre.common.utils.Utils;
+import com.mimotic.tigre.model.Foto;
 import com.mimotic.tigre.model.Ruta;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RutaAdapter extends ArrayAdapter<Ruta> {
+public class FotoAdapter extends ArrayAdapter<Foto> {
 
-    private List<Ruta> rutas = new ArrayList<>();
+    private List<Foto> fotos = new ArrayList<>();
     private Context context;
 
-    public RutaAdapter(Context context, int resource, List<Ruta> objects) {
+    public FotoAdapter(Context context, int resource, List<Foto> objects) {
         super(context, resource, objects);
         this.context = context;
-        this.rutas = objects;
+        this.fotos = objects;
     }
 
     @Override
@@ -30,15 +34,17 @@ public class RutaAdapter extends ArrayAdapter<Ruta> {
 
         if(v==null){
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.row_ruta, null);
+            v = inflater.inflate(R.layout.row_foto, null);
         }
 
-        final Ruta mruta = rutas.get(position);
+        final Foto mfoto = fotos.get(position);
 
         TextView titulo = (TextView) v.findViewById(R.id.title);
-        TextView subtitulo = (TextView) v.findViewById(R.id.subtitle);
+        ImageView imagen = (ImageView) v.findViewById(R.id.thumb);
 
-        titulo.setText(mruta.getTitle());
+        titulo.setText(Utils.timeMillisOutputFormat(mfoto.getTimestamp()));
+
+        Picasso.with(context).load(mfoto.getUrl()).into(imagen);
 //        subtitulo.setText(mruta.);
 
         return v;

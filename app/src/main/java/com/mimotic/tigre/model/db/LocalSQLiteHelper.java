@@ -10,6 +10,8 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_RUTAS = "mis_rutas";
     public static final String COLUMN_RUTAS_ID = "id";
     public static final String COLUMN_RUTAS_TITLE = "title";
+    public static final String COLUMN_RUTAS_DESCRIPCION = "descripcion";
+    public static final String COLUMN_RUTAS_TAGS = "tags";
     public static final String COLUMN_RUTAS_ESTADO = "state";
     public static final String COLUMN_RUTAS_INICIO = "timestamp_start";
     public static final String COLUMN_RUTAS_FIN = "timestamp_end";
@@ -38,12 +40,16 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
             + " integer primary key autoincrement, "
             + COLUMN_RUTAS_TITLE
             + " text not null, "
+            + COLUMN_RUTAS_DESCRIPCION
+            + " text, "
+            + COLUMN_RUTAS_TAGS
+            + " text, "
             + COLUMN_RUTAS_ESTADO
             + " integer not null, "
             + COLUMN_RUTAS_INICIO
-            + " integer, "
+            + " text, "
             + COLUMN_RUTAS_FIN
-            + " integer);";
+            + " text);";
 
 
     private static final String DATABASE_CREATE_TABLE_COORDS = "create table if not exists "
@@ -73,13 +79,14 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_PHOTOS_URL
             + " text not null, "
             + COLUMN_PHOTOS_TIMESTAMP
-            + " integer);";
+            + " text);";
 
 
 
     private static final String DATABASE_NAME = "rutas.db";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2
+            ;
 
     private static LocalSQLiteHelper mInstance = null;
 

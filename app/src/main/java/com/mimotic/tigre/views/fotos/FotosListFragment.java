@@ -1,4 +1,4 @@
-package com.mimotic.tigre.views;
+package com.mimotic.tigre.views.fotos;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -17,21 +16,22 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.mimotic.tigre.R;
-import com.mimotic.tigre.model.Ruta;
+import com.mimotic.tigre.model.Foto;
+import com.mimotic.tigre.model.db.datasource.PhotosDataSource;
 import com.mimotic.tigre.model.db.datasource.RutaDataSource;
 import com.mimotic.tigre.tools.TigreFragment;
-import com.mimotic.tigre.views.adapter.RutaAdapter;
+import com.mimotic.tigre.views.fotos.adapter.FotoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RutasListFragment extends TigreFragment{
+public class FotosListFragment extends TigreFragment{
 
     protected static final String TAG = "RutasListFragment";
 
-    private List<Ruta> rutas = new ArrayList<>();
+    private List<Foto> fotos = new ArrayList<>();
 
-    private RutaAdapter adapter;
+    private FotoAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,32 +39,30 @@ public class RutasListFragment extends TigreFragment{
 
         final View rootView = inflater.inflate(R.layout.rutas_list_view, container, false);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Mis rutas");
+        SwipeMenuListView fotosList = (SwipeMenuListView)rootView.findViewById(R.id.listview);
+        fotosList.setOnItemClickListener(listadoListener);
 
-        SwipeMenuListView rutasList = (SwipeMenuListView)rootView.findViewById(R.id.listview);
-        rutasList.setOnItemClickListener(listadoListener);
+        fotosList.setMenuCreator(creator);
+        fotosList.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
 
-        rutasList.setMenuCreator(creator);
-        rutasList.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+        getFotos();
 
-        getRutas();
-
-        adapter = new RutaAdapter(getActivity(), R.layout.row_ruta, rutas);
-        rutasList.setAdapter(adapter);
+        adapter = new FotoAdapter(getActivity(), R.layout.row_ruta, fotos);
+        fotosList.setAdapter(adapter);
 
 
-        rutasList.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+        fotosList.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
                         // open
-                        Toast.makeText(getActivity(), "Ruta borrada", Toast.LENGTH_SHORT).show();
-                        RutaDataSource rutaDataSource = new RutaDataSource(getActivity());
-                        rutaDataSource.open();
-                        rutaDataSource.deleteRutaById(rutas.get(position).getId());
-                        rutaDataSource.close();
-                        rutas.remove(position);
+                        Toast.makeText(getActivity(), "Foto borrada", Toast.LENGTH_SHORT).show();
+//                        RutaDataSource rutaDataSource = new RutaDataSource(getActivity());
+//                        rutaDataSource.open();
+//                        rutaDataSource.deleteRutaById(rutas.get(position).getId());
+//                        rutaDataSource.close();
+                        fotos.remove(position);
                         adapter.notifyDataSetChanged();
                         break;
 //                    case 1:
@@ -83,30 +81,30 @@ public class RutasListFragment extends TigreFragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(rutas.size()==0){
-            getRutas();
+        if(fotos.size()==0){
+            getFotos();
 
-            adapter = new RutaAdapter(getActivity(), R.layout.row_ruta, rutas);
+            adapter = new FotoAdapter(getActivity(), R.layout.row_ruta, fotos);
             adapter.notifyDataSetChanged();
         }
     }
 
-    private void getRutas(){
-        RutaDataSource rutaDataSource = new RutaDataSource(getActivity());
-        rutaDataSource.open();
-        rutas = rutaDataSource.getAllRutas();
-        rutaDataSource.close();
+    private void getFotos(){
+        PhotosDataSource photosDataSource = new PhotosDataSource(getActivity());
+        photosDataSource.open();
+        fotos = photosDataSource.getAllPhotos();
+        photosDataSource.close();
     }
 
 
     private AdapterView.OnItemClickListener listadoListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Ruta mruta = rutas.get(position);
+            Foto mfoto = fotos.get(position);
             Bundle bundle = new Bundle();
-            bundle.putString("title", mruta.getTitle());
-            bundle.putInt("idruta", mruta.getId());
-            Fragment fragment = new RutaViewFragment();
+            bundle.putString("url", mfoto.getUrl());
+            bundle.putInt("idfoto", mfoto.getId());
+            Fragment fragment = new FotosTabsFragment();//RutaViewFragment();
             fragment.setArguments(bundle);
             callbackNavigation.loadFragment(fragment);
         }

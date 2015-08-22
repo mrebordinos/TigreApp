@@ -12,11 +12,36 @@
         android:layout_height="wrap_content"
         android:text="Titulo de la ruta"/>
 
-
     <EditText
         android:id="@+id/input_title_ruta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        style="@style/TextoBlack.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Descripción"/>
+
+    <EditText
+        android:id="@+id/input_descrip_ruta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        style="@style/TextoBlack.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Tags"/>
+
+    <EditText
+        android:id="@+id/input_tags_ruta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <Button
         android:id="@+id/btn_init"

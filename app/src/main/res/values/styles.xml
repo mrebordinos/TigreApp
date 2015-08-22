@@ -69,4 +69,24 @@
         <!--<item name="fontPath">fonts/ProximaNova-Bold.otf</item>-->
     </style>
 
+
+
+    <style name="BotonHome">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@drawable/btn_home_selector</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <style name="IconDetail">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
 </resources>

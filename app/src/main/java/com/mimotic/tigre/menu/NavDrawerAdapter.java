@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mimotic.tigre.R;
+import com.mimotic.tigre.common.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 
@@ -118,6 +119,8 @@ public class NavDrawerAdapter extends ArrayAdapter<NavDrawerItem> {
 
 //        Picasso.with(context).load(menuheader.getUrlPhoto()).into(navMenuItemHolder.photoView);
                 //.transform(new CircleTransform())
+
+        Picasso.with(context).load(R.drawable.tigreapp_logo).transform(new CircleTransform()).into(navMenuItemHolder.photoView);
 
 //        navMenuItemHolder.nameView.setText(menuheader.getName());
 

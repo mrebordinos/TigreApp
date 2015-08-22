@@ -1,4 +1,4 @@
-package com.mimotic.tigre.views;
+package com.mimotic.tigre.views.rutas;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -47,7 +47,7 @@ public class RutaViewFragment extends TigreFragment implements OnMapReadyCallbac
         String title = getArguments().getString("title");
         rutaId = getArguments().getInt("idruta");
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
 
         mapView = (MapView) view.findViewById(R.id.map);
 
@@ -118,12 +118,15 @@ public class RutaViewFragment extends TigreFragment implements OnMapReadyCallbac
             rectOptions.add(mpoint);
 
             if(i==0){
-                googleMap.addMarker(new MarkerOptions().position(mpoint).title("Inicio"));
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mpoint, 8));
+                MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_house));
+                googleMap.addMarker(markerOptions.position(mpoint).title("Inicio"));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mpoint, 15));
             }
 
             if(i==puntos.size()-1){
-                MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.huella_small));
+                MarkerOptions markerOptions = new MarkerOptions().icon(
+                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+//                        BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_fin));
                 googleMap.addMarker(markerOptions.position(mpoint).title("Fin"));
             }
         }

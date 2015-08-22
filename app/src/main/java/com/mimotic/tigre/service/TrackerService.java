@@ -27,7 +27,7 @@ public class TrackerService extends Service {
 
     private Thread workerThread = null;
 
-    long minTime = 5 * 1000; // Minimum time interval for update in seconds, i.e. 5 seconds.
+    long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 10 seconds.
     long minDistance = 10; // Minimum distance change for update in meters, i.e. 10 meters.
 
     int idRuta = -1;

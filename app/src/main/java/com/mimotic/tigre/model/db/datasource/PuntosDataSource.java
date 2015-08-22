@@ -51,7 +51,7 @@ public class PuntosDataSource {
 
 
 
-    public void insertPoint(GeoPunto punto) {
+    public int insertPoint(GeoPunto punto) {
         ContentValues values = new ContentValues();
 
         values.put(LocalSQLiteHelper.COLUMN_COORDS_ID_RUTA, punto.getIdRuta());
@@ -63,6 +63,7 @@ public class PuntosDataSource {
                 LocalSQLiteHelper.TABLE_COORDS, null, values,
                 SQLiteDatabase.CONFLICT_IGNORE);
 
+        return (int)insertId;
     }
 
 
@@ -92,6 +93,8 @@ public class PuntosDataSource {
 
         return puntos;
     }
+
+
 
 
 }
