@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- TITULO APLICACION -->
+    <string name="app_name">TIGRE II</string>
+    <string name="app_complete">realTime, Interactive, Geolocalized e-touRism bEing</string>
+    
+  	<!-- GPS SERVICE CONTROLLER -->
+  	<string name="statusText1">GPS controller</string> 
+  	<string name="statusText2">Creando Ruta</string> 
+  	<string name="startService">Ruta iniciada</string>
+  	<string name="stopService">Ruta finalizada</string> 
+  	<string name="submenu">Submenu</string>
+  	
+  	<!-- RUTA, PUNTO Y FOTOS -->
+  	<string name="nombre">Nombre</string>
+  	<string name="comentarios">Comentarios</string>
+  	<string name="add_tags">Añadir tags</string>
+  	<string name="nombrePunto">Punto</string>
+  	<string name="comentPunto">Comentarios</string>
+  
+  	<!-- ERRORES -->
+  	<string name="ponTituloFoto">Debe poner titulo a la Foto!</string>
+  	<string name="yaHayRuta">Hay una ruta en funcionamiento. Termine esta ruta antes de empezar una nueva.</string>
+  	<string name="ponTitulo">Debe poner un nombre a la ruta</string> 	
+  	
+  	<!-- DIALOGO INICIO DE RUTA -->
+  	<string name="dialog">Ruta iniciada 
+						¿Volver al mapa?</string>
+  	<string name="yes">Si</string>
+  	<string name="no">No</string>
+  	
+  	<!-- DIALOGO FOTO NUEVA -->
+  	<string name="dialogoFoto">No hay una ruta iniciada ¿desea hacer una foto fuera de ruta?</string>
+  	
+  	
+  	<string name="latitude">Latitud</string> 
+  	<string name="longitude">Longitud</string> 
+  	<string name="altitude">Altitud</string> 
+  	<string name="time">Fecha</string> 
+  	
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- GEISHA CONFIGURACION-->
+  	<string name="nombreUsuario">Usuario:</string>
+  	<string name="contrasena">Contraseña:</string>
+  	<string name="zona">Modo selección de zona:</string>
+  	<string name="autodetect">Autodetectar</string>
+  	<string name="manual">Manual</string>
+  		
+  	<string name="opcionesGuardar">Opciones guadar ruta</string>
+  	<string name="noguardar">No guardar</string>
+  	<string name="tiemporeal">Guardar en tiempo real</string>
+  	<string name="finalizar">Guardar al finalizar ruta</string>
+  	<string name="error_user">El usuario o la contraseña introducidos son incorrectos</string>
+  	<string name="error_seleccion">Elige como seleccionar la zona !! Autodetectar o Manual</string>
+  	<string name="categoria">Categoria ruta</string>
+  	<string name="diseno">Diseño ruta</string>
+    
+    <!-- OPCIONES TIGRE -->
+    <string name="opciones">Opciones </string>
+    <string name="tiempoGPS">Tiempo de actualizacion del GPS:</string>
+    <string name="radio10seg">10 segundos</string>
+    <string name="radio30seg">30 segundos</string>
+    <string name="radio1min">1 minuto</string>
+    <string name="radio5min">5 minutos</string>
+    <string name="distanciaGPS">Distancia minima para actualizacion del GPS:</string>
+    <string name="radio50m">50 metros</string>
+    <string name="radio100m">100 metros</string>
+    <string name="radio200m">200 metros</string>
+    <string name="radio500m">500 metros</string>
+    <string name="iconos">Seleccione un icono:</string>
+    <string name="colorPunto">Seleccione el color para los puntos de la ruta:</string>
+    <string name="colorLinea">Seleccione el color para la linea de la ruta: </string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   	
+   	<array name="opcionvista">
+   		<item>Satelite</item>
+   		<item>Trafico</item>
+   	</array>
+    
+    <array name="zoomarray">
+        <item>Zoom +</item>
+        <item>Zoom -</item>
+    </array>
+   	<array name="categArray">
+  		<item>Rutas privadas</item> 
+  		<item>Rutas publicas</item> 
+  		<item>Rutas autobus</item> 
+  	</array>
+	
+	<array name="color">
+  		<item>Negro</item> 
+  		<item>Rojo</item> 
+  		<item>Azul</item> 
+ 		<item>Verde</item> 
+  	</array>
+
+	<array name="grosor">
+  		<item>----</item> 
+  		<item>----</item> 
+  		<item>----</item> 
+  	</array>
+	
+	<array name="transparencia">
+  		<item>opaco</item> 
+  		<item>semitransparente</item> 
+  		<item>transparente</item> 
+  </array>
+  
+</resources>

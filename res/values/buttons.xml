@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BOTONES -->
+    <string name="botonInicio">INICIO</string> 
+  	<string name="botonService">Iniciar GPS</string> 
+ 	<string name="botonStart">Iniciar TIGre</string> 
+  	<string name="botonStop">Terminar Ruta</string> 
+  	<string name="botonRuta">Ir al Mapa</string>
+  	<string name="botonGuardar">Guardar</string>
+  	<string name="botonPunto">Añadir Punto de Interes</string>
+  	<string name="botonEnviar">Enviar</string>
+  	<string name="botonMostrar">Mostrar</string>
+  	<string name="botonBorrar">Borrar</string>
+  	<string name="botonActualizar">Actualizar</string>
+  	<string name="botonCamara">Camara de Fotos</string>
+  	<string name="botonFoto">Guardar Foto</string>
+  	<string name="botonSituarFoto">Situar Foto en el Mapa</string>
+  	
+ </resources>

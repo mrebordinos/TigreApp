@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+    
+<LinearLayout android:id="@+id/layout"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+   	<TextView 
+  		android:id="@+id/nombreUsuario" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="@string/nombreUsuario" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+  	<EditText 
+  		android:id="@+id/user" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:lines="1" />
+  	
+  	<TextView 
+  		android:id="@+id/contrasena" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="@string/contrasena" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+  	<EditText
+  		android:id="@+id/password" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"  
+  		android:password="true"
+  		android:lines="1" />
+  	
+  	<TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/zona" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  			
+  	<RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:checkedButton="@+id/zonaSelect"
+        android:id="@+id/zona">
+        <RadioButton
+            android:text="@string/autodetect"
+            android:id="@+id/autodetectar"/>
+        <RadioButton
+            android:text="@string/manual"
+            android:id="@+id/manual" />
+    </RadioGroup>
+    
+    <TextView
+   		android:id="@+id/opcionesGuardar" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/opcionesGuardar" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp"/>
+  		
+  	<RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:checkedButton="@+id/opcSelect"
+        android:id="@+id/guardar">
+        <RadioButton
+            android:text="@string/finalizar"
+            android:id="@+id/intheend" />    
+        <RadioButton
+            android:text="@string/tiemporeal"
+            android:id="@+id/realtime" />
+		 <RadioButton
+            android:text="@string/noguardar"
+            android:id="@+id/nosave"/>	
+    </RadioGroup>
+  	
+  	<TextView
+  		android:id="@+id/TxtSpinner1" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/categoria" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+    <Spinner android:id="@+id/spinner1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true"
+         />
+        
+  <TextView
+  		android:id="@+id/tv0"
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/diseno" 
+  		android:textStyle="bold"
+  		android:textColor="@color/colorTexto"
+  		android:textSize="18sp" />
+  
+  <TextView
+  		android:id="@+id/TxtSpinner2" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="Color" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+   <Spinner android:id="@+id/spinner2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true"
+         />
+
+ <TextView
+  		android:id="@+id/TxtSpinner3" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="Grosor" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+   <Spinner android:id="@+id/spinner3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true" />
+    
+    <TextView
+   		android:id="@+id/TxtSpinner4" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="Transparencia" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+   <Spinner android:id="@+id/spinner4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="true" />
+  
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+    
+  
+    <Button 
+  		android:id="@+id/botonBorrar" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="20px"
+  		android:text="@string/botonBorrar"
+  		android:textAlign="center"
+        android:layout_alignParentLeft="true"
+  		android:layout_gravity="left" /> 
+		
+    <Button 
+  		android:id="@+id/botonConfig" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="20px"
+  		android:text="@string/botonGuardar"
+  		android:textAlign="center"
+        android:layout_alignParentRight="true"
+  		android:layout_gravity="right" /> 
+		
+   </RelativeLayout>
+
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,62 @@
+package com.cedetel.android.tigre;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import android.app.Activity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.widget.TextView;
+
+// 		LEE LAS RUTAS GUARDADAS Y LAS MUESTRA COMO TEXTO 
+
+//		NO SE ESTA UTILIZANDO
+
+public class LeerRuta extends Activity{
+	
+	private String nombreRuta;
+	private Long mRutaId;
+	private RutaDB mDbHelper;
+	private TextView txt;
+
+	
+	@Override
+	protected void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		setContentView(R.layout.leer_ruta);
+		 mDbHelper = new RutaDB(this);
+	     mDbHelper.open();
+	     
+		 mRutaId = icicle != null ? icicle.getLong(RutaDB.KEY_ROWID) : null;
+	        if (mRutaId == null) {
+	            Bundle extras = getIntent().getExtras();
+	            mRutaId = extras != null ? extras.getLong(RutaDB.KEY_ROWID) : null;
+	        }
+	    Cursor cursor = mDbHelper.fetchRoute(mRutaId);
+        startManagingCursor(cursor);
+	    nombreRuta = cursor.getString(cursor.getColumnIndex(RutaDB.KEY_TITLE));  
+		
+	    txt = (TextView)findViewById(R.id.txtfile);
+
+	    FileInputStream fIn;
+        
+		try {
+			fIn = openFileInput("Ruta_"+mRutaId+".txt");
+		    InputStreamReader isr = new InputStreamReader(fIn);
+		    char[] inputBuffer = new char[800]; 
+		    isr.read(inputBuffer); 
+		    String readString = new String(inputBuffer); 
+	          
+		    txt.setText("File Reading = "+nombreRuta+" "+mRutaId+": \n"+readString); 
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		
+	}
+}

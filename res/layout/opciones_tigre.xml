@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+   
+   	<TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="@string/opciones" 
+  		android:textStyle="bold"
+  		android:textColor="@color/colorTexto"
+  		android:textSize="18sp" 
+  		/>
+
+<RelativeLayout
+ 	android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+        
+  	 <TextView
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="         Girar la pantalla" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp"
+  		android:layout_x="155px" 
+		android:layout_y="150px" />	
+  	
+  	<CheckBox android:id="@+id/checkGirar"
+        android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:layout_x="55px" 
+		android:layout_y="50px" />
+ 
+ </RelativeLayout>
+  
+  	<TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/tiempoGPS" 
+   		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />		
+  		
+	<RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/tiempo">
+        <RadioButton
+            android:text="@string/radio10seg"
+            android:id="@+id/tiempo10"/>
+        <RadioButton
+            android:text="@string/radio30seg"
+            android:id="@+id/tiempo30"/>
+        <RadioButton
+            android:text="@string/radio1min"
+            android:id="@+id/tiempo60" />
+        <RadioButton
+            android:text="@string/radio5min"
+            android:id="@+id/tiempo300" />
+    </RadioGroup>
+    
+    <TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/distanciaGPS" 
+   		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />		
+  		
+	<RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/distancia">
+        <RadioButton
+            android:text="@string/radio50m"
+            android:id="@+id/distancia50"/>
+        <RadioButton
+            android:text="@string/radio100m"
+            android:id="@+id/distancia100"/>
+        <RadioButton
+            android:text="@string/radio200m"
+            android:id="@+id/distancia200" />
+        <RadioButton
+            android:text="@string/radio500m"
+            android:id="@+id/distancia500" />
+    </RadioGroup>
+    
+   
+	<TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/colorPunto" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+    <Spinner android:id="@+id/spinnerColorPunto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:drawSelectorOnTop="true" />
+  	
+  	<TextView
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"
+  		android:padding="10px" 
+  		android:text="@string/colorLinea" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="15sp" />
+  		
+    <Spinner android:id="@+id/spinnerColorLinea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10px"
+        android:drawSelectorOnTop="true" />
+         	
+  	 
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+    
+  
+    <Button 
+  		android:id="@+id/botonBorrarTigre" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="20px"
+  		android:text="@string/botonBorrar"
+  		android:textAlign="center"
+        android:layout_alignParentLeft="true"
+  		android:layout_gravity="left" /> 
+		
+   <Button 
+  		android:id="@+id/botonGuardarTigre" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="10px"
+  		android:text="@string/botonGuardar"
+  		android:textAlign="center"
+		android:layout_alignParentRight="true"
+        android:layout_gravity="right" /> 
+       
+		
+   </RelativeLayout>
+   
+    <Button 
+  		android:id="@+id/botonReset" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" 
+  		android:padding="10px"
+  		android:text="Reset"
+  		android:textAlign="center" /> 
+  		
+</LinearLayout>
+</ScrollView>

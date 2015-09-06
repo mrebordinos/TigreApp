@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:scrollbars="none">
+    
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:gravity="center">
+    
+    <TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Agrupación:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" /> 
+  		
+  	<TextView 
+  		android:id="@+id/titulogeisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  	  	android:paddingLeft="50px" 
+  	  	android:paddingBottom="10px"
+  		android:textSize="16sp" /> 
+  	
+  	<TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Titulo de las rutas:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" /> 
+  	
+  	<TextView 
+  		android:id="@+id/titulorutas" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  	  	android:paddingLeft="50px" 
+  	  	android:textSize="16sp" /> 
+  		
+  	 <TextView 
+  	 	android:id="@+id/tusuariogeisha"
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Usuario:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" />
+  		 	
+  	<TextView 
+  		android:id="@+id/usuariogeisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"   		
+  		android:paddingLeft="50px" 
+  		android:paddingBottom="10px"
+  		android:textSize="16sp" />
+  		
+	<TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Región:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" />
+  		  		 		
+  	<TextView 
+  		android:id="@+id/regiongeisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"   		
+  		android:paddingLeft="50px" 
+  		android:paddingBottom="10px"
+  		android:textSize="16sp" />
+  		
+  	<TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Tipo de ruta:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" />	 		
+  	
+  	<TextView 
+  		android:id="@+id/serviciogeisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"   		
+  	  	android:paddingLeft="50px" 
+  		android:paddingBottom="10px"
+  		android:textSize="16sp" />
+  		
+  	<TextView 
+  		android:id="@+id/ttagsgeisha"
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Tags:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" /> 		
+  	
+  	<TextView 
+  		android:id="@+id/tagsgeisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"   		
+		android:paddingLeft="50px" 
+  		android:paddingBottom="10px"
+  		android:textSize="16sp" />
+  	
+  	<TextView 
+  		android:id="@+id/tcreageisha"
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content" 
+  		android:text="Fecha de creación:"
+  		android:textColor="@color/colorTexto" 
+  		android:padding="5px"
+  		android:textSize="16sp" /> 		
+  	
+  	<TextView 
+  		android:id="@+id/creageisha" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="wrap_content"   		
+  		android:paddingLeft="50px"
+  		android:paddingBottom="10px"
+  		android:textSize="16sp" />
+  	  	
+
+</LinearLayout>
+</ScrollView>
+  		

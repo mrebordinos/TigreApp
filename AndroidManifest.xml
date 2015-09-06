@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.cedetel.android.tigre">
+    
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" /> 
+	<uses-permission android:name="android.permission.ACCESS_GPS" /> 
+	<uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" /> 
+	<uses-permission android:name="android.permission.ACCESS_CELL_ID" /> 	
+    
+    <application android:icon="@drawable/zodiac">
+        <activity android:name=".TigreII" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".MenuP" android:label="Menu">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN"/>
+        	</intent-filter>
+        </activity>
+        
+        <!-- MAPAS, RUTAS Y PUNTOS -->
+        <activity android:name=".MapaRuta" android:label="Mapa Ruta" />
+        <activity android:name=".MapaRutaActual" android:label="Mapa Ruta" />
+        <activity android:name=".NuevaRuta" android:label="Nueva Ruta" />
+        <activity android:name=".PuntoInteres" android:label="Punto de Interes" android:theme="@android:style/Theme.Dialog" android:launchMode="singleTask" />        
+        <activity android:name=".MisRutas" android:label="Mis Rutas" />
+		<activity android:name=".MisPuntos" android:label="Puntos de interes" />
+		<activity android:name=".MisPuntosRuta" android:label="Puntos de interes" />
+		<activity android:name=".MisPuntosGeisha" android:label="Puntos de interes" />
+		<activity android:name=".OpcionesTigre" android:label="Opciones Tigre" />
+		<activity android:name=".LeerRuta" android:label="Leer Ruta" />
+		<activity android:name=".GeishaInfo" android:label="Geisha Info" />
+		
+		<!-- DIBUJAR -->
+		<activity android:name=".dibujar.DibujarRuta" android:label="Mi Ruta" />
+        <activity android:name=".dibujar.DibujarPunto" android:label="POI" />
+        <activity android:name=".dibujar.DibujarTodasRutas" android:label="Rutas" />
+        <activity android:name=".dibujar.DibujarGeishaRuta" android:label="Ruta Geisha" />
+        <activity android:name=".dibujar.DibujarGeishaAgrup" android:label="Agrupacion Geisha" />
+        
+		<!-- GPS -->
+        <activity android:name=".gps.GPSserviceController" android:label="GPS Controller">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        	</intent-filter>
+      	</activity>
+        
+        <activity android:name=".gps.GPSsimulator" android:label="GPS simulator">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        	  	<action android:name="com.cedetel.android.tigre.gps.LOCATION_UPDATE" />
+        	</intent-filter>
+        </activity>
+        
+        <service android:name=".gps.GPSservice" android:label="GPSservice">	
+        	<intent-filter>
+        		<action android:name="com.cedetel.android.tigre.gps.LOCATION_UPDATE" />
+        	</intent-filter>
+        </service>
+        
+        <receiver android:name=".gps.GPSreceiver" android:label="GPSreceiver" >
+        	<intent-filter>
+        	  	<action android:name="com.cedetel.android.tigre.gps.LOCATION_UPDATE" />
+      	   </intent-filter>
+      	</receiver>
+      	
+      	<!-- GEISHA -->
+		<activity android:name=".geisha.GeishaMenu" android:label="Menu Geisha" />
+		<activity android:name=".geisha.GeishaConfig" android:label="Configuracion Geisha" />
+		<activity android:name=".geisha.GeishaConsulta" android:label="Consultar Informacion Geografica" />
+		<activity android:name=".geisha.GeishaListaConsulta" android:label="Resultados de la Consulta" />
+				
+		<!-- WEB SERVICE -->
+		<activity android:name=".webservice.Ejemplo" android:label="Ejemplo" />
+		
+		<!-- CAMARA -->
+		<activity android:name=".camara.MenuCamara" android:label="Menu Camara" />
+		<activity android:name=".camara.Camara" android:label="Camara" />
+		<activity android:name=".camara.MisFotos" android:label="Mis Fotos" />
+		<activity android:name=".camara.MisFotosRuta" android:label="Mis Fotos Ruta" />		
+		<activity android:name=".camara.NuevaFoto" android:label="Guardar Foto" />
+		<activity android:name=".camara.VerFoto" />
+		<activity android:name=".camara.CamaraPre" android:label="Camara" />
+		<activity android:name=".camara.MapaFotos" android:label="Mapa" />
+		<activity android:name=".camara.MapaFoto" android:label="Mapa" />
+    </application>
+</manifest> 

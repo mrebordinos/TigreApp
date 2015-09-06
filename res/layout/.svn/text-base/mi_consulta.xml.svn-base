@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:orientation="vertical"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" >
+ 	
+ 	<TextView android:id="@+id/resultadoRutas"
+	 	android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textColor="@color/colorTexto"
+	  	android:textSize="20sp"
+	  	android:layout_x="10px" 
+		android:layout_y="24px"
+    	/>
+    
+	<ListView android:id="@+id/rutaslist" 
+		android:layout_width="220px" 
+		android:layout_height="150px" 
+		android:textColor="@color/colorTexto"
+  		android:textSize="20sp"
+		android:layout_x="55px" 
+		android:layout_y="50px" > 
+		</ListView> 
+		
+	<TextView android:id="@+id/resultadoPuntos" 
+		android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:textColor="@color/colorTexto"
+  		android:textSize="20sp"
+  		android:layout_x="10px" 
+		android:layout_y="210px"
+   		 />
+   	 
+	<ListView android:id="@+id/puntoslist"
+        android:layout_width="220px" 
+		android:layout_height="150px"
+        android:textColor="@color/colorTexto"
+  		android:textSize="20sp"
+       	android:layout_x="55px" 
+		android:layout_y="236px" >	 
+		</ListView>
+	 
+</AbsoluteLayout> 

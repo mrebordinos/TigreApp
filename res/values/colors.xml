@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	
+	<drawable name="navajo_white">#FFDEAD</drawable>
+	<drawable name="screen_background_black">#ff000000</drawable>
+    <drawable name="translucent_background">#e0000000</drawable>
+    <drawable name="transparent_background">#00000000</drawable>
+	
+	<color name="white">#000000</color>
+    <color name="red">#ff0000</color>
+    <color name="blue">#0000ff</color>
+    <color name="green">#f0f0</color>
+    <color name="yellow">#ffff00</color>
+    <color name="indian_red">#CD5C5C</color>
+    <color name="medium_aquamarine">#66CDAA</color>
+	<color name="colorTexto">#F2EEF1</color>
+	
+</resources>

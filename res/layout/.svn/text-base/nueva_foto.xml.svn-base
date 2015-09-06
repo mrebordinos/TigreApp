@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="fill"
+    android:scrollbars="none">
+   
+    <LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="fill">
+    
+  	<TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" 
+  		android:padding="10px"
+  		android:text="@string/nombre" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="20sp" />
+  		
+  	<EditText 
+  		android:id="@+id/Ptitle" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" />
+  	 		
+  	<TextView 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" 
+  		android:padding="10px"
+  		android:text="@string/add_tags" 
+  		android:textColor="@color/colorTexto"
+  		android:textSize="20sp" />
+  		
+  	<EditText
+  		android:id="@+id/Ptag" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent"  
+  		android:lines="1" />
+  	
+  	<TextView  
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" 
+  		android:padding="10px"
+  		android:text="Ruta: "
+  		android:textColor="@color/colorTexto"
+  		android:textSize="20sp" />
+  		
+  	<TextView android:id="@+id/Rtitle" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="fill_parent" 
+  		android:padding="10px"
+  		android:textSize="20sp" />
+  		
+  	<Button 
+  		android:id="@+id/botonFoto" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="20px"
+  		android:text="@string/botonFoto" 
+  		android:layout_gravity="right"/> 
+  		
+  	<Button 
+  		android:id="@+id/botonFotoA" 
+  		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content" 
+  		android:padding="20px"
+  		android:text="@string/botonActualizar" 
+  		android:layout_gravity="right" /> 
+  		
+</LinearLayout>
+</ScrollView>

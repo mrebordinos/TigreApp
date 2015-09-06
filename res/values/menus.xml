@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   	<!-- MENU PRINCIPAL -->
+  	<string name="menu1">Nueva Ruta</string> 
+  	<string name="menu2">Mis Rutas</string> 
+  	<string name="menu3">Geisha</string> 
+  	<string name="menu4">Iniciar GPS</string> 
+  	<string name="menu5">Puntos de Interes</string>
+ 	
+ 	<!-- MENU MAPA, NUEVA RUTA -->
+  	<string name="menu1mapa">Satelite (S)</string> 
+  	<string name="menu2mapa">Trafico (T)</string> 
+  	<string name="menu3mapa">Actualizar</string> 
+  	
+  	<string name="menu6mapa">Parar ruta</string> 
+  	<string name="menu8mapa">Iniciar ruta</string>
+  	<string name="menu11mapa">Anadir comentario</string>
+  	<string name="menu12mapa">Modificar</string>
+  	<string name="menu13mapa">Borrar ultimo punto (R)</string>
+ 
+ 	<!-- MENU MAPA, DIBUJAR RUTA -->
+  	<string name="menu1dibujar">Información</string>
+  	<string name="menu2dibujar">Puntos de interes</string>
+ 	<string name="menu3dibujar">Dibujar todas las rutas</string>
+  	
+  	<!-- MENU PUNTO -->
+  	<string name="menu1punto">Editar punto</string>
+  	<string name="menu1foto">Fotos</string>
+  	<string name="menu2foto">Mostrar en el mapa</string>
+ 	<string name="menu3foto">Ver foto</string>
+ 	<string name="menu4foto">Ver fotos fuera de rutas</string>
+ 	
+ 	<!-- COMPARTIDO -->
+  	<string name="menuCapas">Capas</string>
+  	<string name="menuZoom">Zoom</string>
+  	<string name="menuEditar">Editar</string>
+  	<string name="menuGuardar">Guardar</string> 
+  	<string name="menuBorrar">Borrar</string>
+ 	<string name="menuSalir">Salir</string>
+ 	<string name="menuBuscar">Buscar</string>
+ 	
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/PhotoList"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:drawSelectorOnTop="false"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip">
+
+        <ImageView
+            android:id="@+id/thumb"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:drawSelectorOnTop="false"
+            android:layout_toRight="@+id/thumb"
+            android:paddingLeft="3dip">
+
+            <TextView
+                android:id="@+id/nombreFoto"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_centerVertical="true"
+                android:textStyle="italic"
+                 />
+
+            <TextView
+                android:id="@+id/tagFoto"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_centerVertical="true"
+                 />
+                
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
