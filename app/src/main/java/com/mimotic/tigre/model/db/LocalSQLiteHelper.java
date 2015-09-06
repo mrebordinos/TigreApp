@@ -32,6 +32,15 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PHOTOS_URL = "url_photo";
     public static final String COLUMN_PHOTOS_TIMESTAMP = "timestamp";
 
+    // //////////////////// IPOINTS ////////////////////////
+    public static final String TABLE_POINTS = "points";
+    public static final String COLUMN_POINTS_ID = "id";
+    public static final String COLUMN_POINTS_ID_RUTA = "id_ruta";
+    public static final String COLUMN_POINTS_ID_COORDS = "id_coords";
+    public static final String COLUMN_POINTS_TEXT = "content";
+    public static final String COLUMN_POINTS_ICON = "icon";
+    public static final String COLUMN_POINTS_TIMESTAMP = "timestamp";
+
 
     private static final String DATABASE_CREATE_TABLE_RUTAS = "create table if not exists "
             + TABLE_RUTAS
@@ -82,6 +91,23 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
             + " text);";
 
 
+    private static final String DATABASE_CREATE_TABLE_IPOINTS = "create table if not exists "
+            + TABLE_POINTS
+            + "("
+            + COLUMN_POINTS_ID
+            + " integer primary key autoincrement, "
+            + COLUMN_POINTS_ID_RUTA
+            + " integer not null, "
+            + COLUMN_POINTS_ID_COORDS
+            + " integer not null, "
+            + COLUMN_POINTS_TEXT
+            + " text not null, "
+            + COLUMN_POINTS_ICON
+            + " text not null, "
+            + COLUMN_POINTS_TIMESTAMP
+            + " text);";
+
+
 
     private static final String DATABASE_NAME = "rutas.db";
 
@@ -107,13 +133,15 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(DATABASE_CREATE_TABLE_RUTAS);
         db.execSQL(DATABASE_CREATE_TABLE_COORDS);
         db.execSQL(DATABASE_CREATE_TABLE_PHOTOS);
+        db.execSQL(DATABASE_CREATE_TABLE_IPOINTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RUTAS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COORDS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PHOTOS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RUTAS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COORDS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PHOTOS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
         db.setVersion(newVersion);
         onCreate(db);
     }

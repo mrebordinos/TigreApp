@@ -44,7 +44,7 @@ public class FotoAdapter extends ArrayAdapter<Foto> {
 
         titulo.setText(Utils.timeMillisOutputFormat(mfoto.getTimestamp()));
 
-        Picasso.with(context).load(mfoto.getUrl()).into(imagen);
+        Picasso.with(context).load(mfoto.getUrl()).resize(80, 80).centerCrop().into(imagen);
 //        subtitulo.setText(mruta.);
 
         return v;
