@@ -1,5 +1,6 @@
 package com.mimotic.tigre.views.fotos;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -101,12 +102,17 @@ public class FotosListFragment extends TigreFragment{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Foto mfoto = fotos.get(position);
-            Bundle bundle = new Bundle();
-            bundle.putString("url", mfoto.getUrl());
-            bundle.putInt("idfoto", mfoto.getId());
-            Fragment fragment = new FotosTabsFragment();//RutaViewFragment();
-            fragment.setArguments(bundle);
-            callbackNavigation.loadFragment(fragment);
+
+            Intent fotoIntent = new Intent(getActivity(), TouchImageActivity.class);
+            fotoIntent.putExtra("imageURL", mfoto.getUrl());
+            startActivity(fotoIntent);
+
+//            Bundle bundle = new Bundle();
+//            bundle.putString("url", mfoto.getUrl());
+//            bundle.putInt("idfoto", mfoto.getId());
+//            Fragment fragment = new FotosTabsFragment();//RutaViewFragment();
+//            fragment.setArguments(bundle);
+//            callbackNavigation.loadFragment(fragment);
         }
     };
 

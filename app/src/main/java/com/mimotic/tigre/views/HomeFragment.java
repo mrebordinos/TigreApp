@@ -1,14 +1,23 @@
 package com.mimotic.tigre.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -50,6 +59,12 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
     private LinearLayout btnInitRuta;
     private LinearLayout btnFinishRuta;
 
+    private Location mCurrentLocation;
+
+    boolean isRoutin = false;
+
+    PolylineOptions rectOptions = new PolylineOptions();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -82,6 +97,9 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
         btnInitRuta.setOnClickListener(this);
         btnFinishRuta.setOnClickListener(this);
         btnTakePhoto.setOnClickListener(this);
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(this);
 
         return rootView;
     }
@@ -116,16 +134,45 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
 
 
     private void setButtons(){
-        boolean isRoutin = SettingsConstants.getIsRouting(getActivity());
+        isRoutin = SettingsConstants.getIsRouting(getActivity());
 
         if(isRoutin){
             btnInitRuta.setVisibility(View.GONE);
             btnFinishRuta.setVisibility(View.VISIBLE);
+
+            setLocationListenerUpdates();
         }else{
             btnInitRuta.setVisibility(View.VISIBLE);
             btnFinishRuta.setVisibility(View.GONE);
         }
 
+    }
+
+
+
+    private void setLocationListenerUpdates(){
+        long minTime = 10 * 1000;
+        long minDistance = 10;
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(getProviderName(), minTime, minDistance, locationListener);
+
+    }
+
+
+    private String getProviderName() {
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        Criteria criteria = new Criteria();
+        criteria.setPowerRequirement(Criteria.POWER_LOW); // Chose your desired power consumption level.
+        criteria.setAccuracy(Criteria.ACCURACY_FINE); // Choose your accuracy requirement.
+        criteria.setSpeedRequired(true); // Chose if speed for first location fix is required.
+        criteria.setAltitudeRequired(false); // Choose if you use altitude.
+        criteria.setBearingRequired(false); // Choose if you use bearing.
+        criteria.setCostAllowed(false); // Choose if this provider can waste money :-)
+
+        // Provide your criteria and flag enabledOnly that tells
+        // LocationManager only to return active providers.
+        return locationManager.getBestProvider(criteria, true);
     }
 
 
@@ -146,25 +193,8 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
 
 
     private void drawLine(){
-//        LatLng casa = new LatLng(37.45, -122.0);
-//        googleMap.addMarker(new MarkerOptions().position(casa).title("Inicio"));
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(casa, 10));
-//
-//
+
 //        PolylineOptions rectOptions = new PolylineOptions();
-//        rectOptions//add(casa);
-//                .add(new LatLng(37.45, -122.0))  // North of the previous point, but at the same longitude
-//                .add(new LatLng(37.45, -122.2))  // Same latitude, and 30km to the west
-//                .add(new LatLng(37.35, -122.2))  // Same longitude, and 16km to the south
-//                .add(new LatLng(37.35, -122.0)); // Closes the polyline.
-//
-//        rectOptions.color(Color.BLUE);
-//        rectOptions.width(2);
-//        // Get back the mutable Polyline
-//        Polyline polyline = googleMap.addPolyline(rectOptions);
-
-
-        PolylineOptions rectOptions = new PolylineOptions();
 
         for(int i=0; i<puntos.size(); i++){
             LatLng mpoint = new LatLng(puntos.get(i).getLatitude(), puntos.get(i).getLongitude());
@@ -176,11 +206,12 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mpoint, 15));
             }
 
-            if(i==puntos.size()-1){
-                MarkerOptions markerOptions = new MarkerOptions().icon(
-                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-//                MarkerOptions markerOptions = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag_fin));
-                googleMap.addMarker(markerOptions.position(mpoint).title("Fin"));
+            if(!isRoutin) {
+                if (i == puntos.size() - 1) {
+                    MarkerOptions markerOptions = new MarkerOptions().icon(
+                            BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                    googleMap.addMarker(markerOptions.position(mpoint).title("Fin"));
+                }
             }
         }
 
@@ -190,6 +221,69 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
         Polyline polyline = googleMap.addPolyline(rectOptions);
     }
 
+
+
+
+
+    private LocationListener locationListener = new LocationListener() {
+
+        @Override
+        public void onLocationChanged(Location location) {
+            mCurrentLocation = location;
+            updateUI();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
+
+
+
+    private void updateUI() {
+        LatLng punto = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        rectOptions.add(punto);
+        googleMap.addPolyline(rectOptions);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(punto));
+    }
+
+
+
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_mapa, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.menu_vista_mapa) {
+            if(googleMap.getMapType()!=GoogleMap.MAP_TYPE_SATELLITE) {
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            }else{
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            }
+            return true;
+        }else{
+            return (super.onOptionsItemSelected(item));
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -203,61 +297,19 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
         }else if(v.getId()==R.id.take_photo){
 //            dispatchTakePictureIntent();
             ((MainActivity)getActivity()).dispatchTakePictureIntent();
+        }else if(v.getId()==R.id.fab){
+            addInfoPoint();
         }
     }
 
 
-//    static final int REQUEST_IMAGE_CAPTURE = 123;
 
-//    private void dispatchTakePictureIntent() {
-////        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-////        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-////            getActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-////        }
-//
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        // Ensure that there's a camera activity to handle the intent
-//        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-//            // Create the File where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException ex) {
-//                // Error occurred while creating the File
-//                LogTigre.e("Photo", "Error guardando imagen", ex);
-//            }
-//            // Continue only if the File was successfully created
-//            if (photoFile != null) {
-//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-//                getActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//            }
-//        }
-//    }
-//
-//
-//    String mCurrentPhotoPath;
-//
-//    private File createImageFile() throws IOException {
-//        // Create an image file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "IMG_" + timeStamp + "_";
-//        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//
-//        File tigreFolder = new File(storageDir + "/tigrapp");
-//        if(!tigreFolder.exists()){
-//            tigreFolder.mkdir();
-//        }
-//
-//        File image = File.createTempFile(
-//                imageFileName,  /* prefix */
-//                ".jpg",         /* suffix */
-//                tigreFolder      /* directory */
-//        );
-//
-//        // Save a file: path for use with ACTION_VIEW intents
-//        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-//        return image;
-//    }
+    private void addInfoPoint(){
+
+    }
+
+
+
 
 
 }

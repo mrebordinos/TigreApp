@@ -33,7 +33,7 @@ public class FotosTabsFragment extends TigreFragment{
         mTabHost.addTab(mTabHost.newTabSpec("lista").setIndicator("Lista"),
                 FotosListFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("mapa").setIndicator("Mapa"),
-                MapFragment.class, null);
+                FotosMapFragment.class, null);
 
         return rootView;
     }

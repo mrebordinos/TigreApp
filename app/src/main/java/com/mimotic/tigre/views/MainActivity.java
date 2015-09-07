@@ -57,7 +57,6 @@ public class MainActivity extends AbstractNavDrawerActivity implements TigreCall
                 NavMenuHeader.create(0, "Tigre", "http://image.naldzgraphics.net/2012/11/35-simple-lines-tiger-logo.jpg"),
 //                NavMenuSection.create(100, "seccion"),
                 NavMenuItem.create(101, "home", "ic_home", false, false, this),
-//                NavMenuItem.create(102, "nueva ruta", "ic_nueva_ruta", false, false, this),
                 NavMenuItem.create(103, "mis rutas", "ic_mis_rutas", false, false, this),
                 NavMenuItem.create(104, "mis fotos", "ic_faro", false, false, this),
                 NavMenuItem.create(105, "configuración", "ic_atom", false, false, this),

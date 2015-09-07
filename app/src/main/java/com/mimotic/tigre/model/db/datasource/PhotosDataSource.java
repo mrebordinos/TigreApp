@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.mimotic.tigre.common.LogTigre;
 import com.mimotic.tigre.model.Foto;
 import com.mimotic.tigre.model.Ruta;
@@ -94,6 +95,40 @@ public class PhotosDataSource {
         }
 
         return fotos;
+    }
+
+
+
+    public ArrayList<LatLng> getAllPhotosCoords() {
+        ArrayList<LatLng> fotosCoords = new ArrayList<>();
+
+        String QUERY = "SELECT c.lat, c.long FROM photos as f LEFT JOIN coords as c on c.id = f.id_coords";
+        try{
+
+            Cursor cursor = database.rawQuery(QUERY, null);
+
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+
+                double latitude = cursor.getDouble(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LAT));
+                double longitude = cursor.getDouble(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LONG));
+
+                LatLng mpoint = new LatLng(latitude, longitude);
+
+                fotosCoords.add(mpoint);
+                cursor.moveToNext();
+            }
+
+            // Make sure to close the cursor
+            cursor.close();
+
+
+
+        }catch (Exception e){
+            LogTigre.e(TAG, "No hay fotos", e);
+        }
+
+        return fotosCoords;
     }
 
 

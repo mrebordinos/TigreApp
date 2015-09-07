@@ -36,6 +36,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".views.fotos.TouchImageActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
 
 
         <service android:name=".service.TrackerService"></service>
