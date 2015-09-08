@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.google.android.gms.maps.model.LatLng;
 import com.mimotic.tigre.common.LogTigre;
 import com.mimotic.tigre.model.Foto;
+import com.mimotic.tigre.model.IPoint;
 import com.mimotic.tigre.model.Ruta;
 import com.mimotic.tigre.model.db.DatabaseManagerLocal;
 import com.mimotic.tigre.model.db.LocalSQLiteHelper;
@@ -47,6 +48,19 @@ public class PhotosDataSource {
         foto.setIdCoords(cursor.getInt(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_PHOTOS_ID_COORDS)));
         foto.setUrl(cursor.getString(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_PHOTOS_URL)));
         foto.setTimestamp(cursor.getLong(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_PHOTOS_TIMESTAMP)));
+
+
+        if(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LAT)>0) {
+            foto.setLatitude(cursor.getDouble(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LAT)));
+        }
+
+        if(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LONG)>0) {
+            foto.setLongitude(cursor.getDouble(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_LONG)));
+        }
+
+        if(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_ALT)>0) {
+            foto.setAltitude(cursor.getDouble(cursor.getColumnIndex(LocalSQLiteHelper.COLUMN_COORDS_ALT)));
+        }
 
         return foto;
     }
@@ -132,5 +146,43 @@ public class PhotosDataSource {
     }
 
 
+
+    public ArrayList<Foto> getAllPhotosByRuta(int idRuta) {
+        ArrayList<Foto> fotos = new ArrayList<>();
+
+        String QUERY = "SELECT p.id, p.id_coords, p.id_ruta, p.url_photo, p.timestamp, c.lat, c.long, c.alt " +
+                "FROM photos as p LEFT JOIN coords as c ON c.id = p.id_coords WHERE p.id_ruta = " + idRuta;
+
+        try{
+            Cursor cursor = database.rawQuery(QUERY, null);
+
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Foto foto = cursorToFoto(cursor);
+                fotos.add(foto);
+                cursor.moveToNext();
+            }
+
+            // Make sure to close the cursor
+            cursor.close();
+
+        }catch (Exception e){
+            LogTigre.e(TAG, "No hay fotos", e);
+        }
+
+        return fotos;
+    }
+
+
+
+    public void deletePhotoById(int id) {
+        try{
+            database.delete(LocalSQLiteHelper.TABLE_PHOTOS, LocalSQLiteHelper.COLUMN_PHOTOS_ID + " = " + id, null);
+
+            LogTigre.i(TAG, "Eliminadas de base de datos la foto");
+        }catch (Exception e){
+            LogTigre.e(TAG, "error al borrar foto", e);
+        }
+    }
 
 }

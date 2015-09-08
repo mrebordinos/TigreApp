@@ -1,6 +1,8 @@
 package com.mimotic.tigre.views.fotos.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.mimotic.tigre.common.utils.Utils;
 import com.mimotic.tigre.model.Foto;
 import com.mimotic.tigre.model.Ruta;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,8 @@ public class FotoAdapter extends ArrayAdapter<Foto> {
         titulo.setText(Utils.timeMillisOutputFormat(mfoto.getTimestamp()));
 
         Picasso.with(context).load(mfoto.getUrl()).resize(80, 80).centerCrop().into(imagen);
-//        subtitulo.setText(mruta.);
+
+
 
         return v;
     }

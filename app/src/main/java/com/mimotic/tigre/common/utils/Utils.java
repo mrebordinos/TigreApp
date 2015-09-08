@@ -1,6 +1,7 @@
 package com.mimotic.tigre.common.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
@@ -87,5 +88,42 @@ public class Utils {
         // LocationManager only to return active providers.
         return locationManager.getBestProvider(criteria, true);
     }
+
+
+
+    public static int getColor(int position){
+        if(position==0){
+            return Color.RED;
+        }else if(position==1){
+            return Color.GREEN;
+        }else if(position==2){
+            return Color.BLUE;
+        }else if(position==3){
+            return Color.YELLOW;
+        }else{
+            return Color.BLUE;
+        }
+
+    }
+
+
+
+    public static int getGrosor(int position){
+        if(position==0){
+            return 2;
+        }else if(position==1){
+            return 4;
+        }else if(position==2){
+            return 6;
+        }else if(position==3){
+            return 8;
+        }else if(position==4){
+            return 10;
+        }else{
+            return 4;
+        }
+
+    }
+
 
 }

@@ -37,10 +37,12 @@
             android:text="Tiempo: "/>
 
         <EditText
+            android:id="@+id/input_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:layout_marginRight="5dp"
+            android:inputType="number"
             android:gravity="right"
             android:hint="10"/>
 
@@ -66,10 +68,12 @@
             android:text="Distancia: "/>
 
         <EditText
+            android:id="@+id/input_distance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:layout_marginRight="5dp"
+            android:inputType="number"
             android:gravity="right"
             android:hint="10"/>
 
@@ -107,6 +111,7 @@
                 android:text="Color: "/>
 
             <Spinner
+                android:id="@+id/combo_color"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -130,6 +135,7 @@
                 android:text="Grosor: "/>
 
             <Spinner
+                android:id="@+id/combo_grosor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"

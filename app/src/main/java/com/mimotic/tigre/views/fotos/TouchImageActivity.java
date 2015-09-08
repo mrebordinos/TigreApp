@@ -2,15 +2,16 @@ package com.mimotic.tigre.views.fotos;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.mimotic.tigre.R;
 import com.mimotic.tigre.tools.TigreActivity;
 import com.mimotic.tigre.tools.TouchImageView;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
 
 public class TouchImageActivity extends TigreActivity {
 
@@ -22,14 +23,9 @@ public class TouchImageActivity extends TigreActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//		initializeToolbar();
-//		setTitle(R.string.ID_3600_titulo_controller);
-
         String imageURL = getIntent().getStringExtra("imageURL");
 
-        TouchImageView view = new TouchImageView(this);
-//		view.setImageDrawable(new BitmapDrawable(getResources(),
-//				loadBitmap(imageURL)));
+        final TouchImageView view = new TouchImageView(this);
         view.setMaxZoom(4f);
         view.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -38,6 +34,15 @@ public class TouchImageActivity extends TigreActivity {
         Picasso.with(this).load(imageURL).into(view);
 
         setContentView(view);
+
+//        ImageView mImageView = new ImageView(this);
+//
+//        Picasso.with(this).load(imageURL).into(mImageView);
+//
+//        PhotoViewAttacher mAttacher = new PhotoViewAttacher(mImageView);
+//
+////        mAttacher.update();
+//        setContentView(mImageView);
     }
 
 

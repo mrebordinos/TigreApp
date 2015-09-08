@@ -75,6 +75,8 @@ public class RutaDataSource {
 
             database.delete(LocalSQLiteHelper.TABLE_COORDS, LocalSQLiteHelper.COLUMN_COORDS_ID_RUTA + " = " + id, null);
 
+            database.delete(LocalSQLiteHelper.TABLE_POINTS, LocalSQLiteHelper.COLUMN_POINTS_ID_RUTA + " = " + id, null);
+
             LogTigre.i(TAG, "Eliminadas de base de datos la ruta");
         }catch (Exception e){
             LogTigre.e(TAG, "error al borrar ruta", e);

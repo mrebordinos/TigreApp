@@ -60,7 +60,7 @@ public class CreateRutaFragment extends TigreFragment {
                 Intent intent = new Intent(getActivity(), TrackerService.class);
                 getActivity().startService(intent);
 
-                callbackNavigation.loadFragment(new MapFragment());
+                callbackNavigation.loadFragment(new HomeFragment(), false);
             }
         });
 

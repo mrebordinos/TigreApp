@@ -116,6 +116,22 @@ public class MainActivity extends AbstractNavDrawerActivity implements TigreCall
         transaction.commit();
     }
 
+    @Override
+    public void loadFragment(Fragment mfragment, boolean addToBack){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        if (getSupportFragmentManager().findFragmentById(R.id.container) != null) {
+            transaction.replace(R.id.container, mfragment);
+        } else {
+            transaction.add(R.id.container, mfragment);
+        }
+
+        if(addToBack) {
+            transaction.addToBackStack(null);
+        }
+        transaction.commit();
+    }
+
 
     static final int REQUEST_IMAGE_CAPTURE = 123;
 

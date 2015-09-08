@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 
 import com.mimotic.tigre.R;
 import com.mimotic.tigre.common.LogTigre;
+import com.mimotic.tigre.common.settings.SettingsConstants;
 import com.mimotic.tigre.model.GeoPunto;
 import com.mimotic.tigre.model.Ruta;
 import com.mimotic.tigre.model.db.datasource.PuntosDataSource;
@@ -27,8 +28,8 @@ public class TrackerService extends Service {
 
     private Thread workerThread = null;
 
-    long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 10 seconds.
-    long minDistance = 10; // Minimum distance change for update in meters, i.e. 10 meters.
+//    long minTime = 10 * 1000; // Minimum time interval for update in seconds, i.e. 10 seconds.
+//    long minDistance = 10; // Minimum distance change for update in meters, i.e. 10 meters.
 
     int idRuta = -1;
 
@@ -73,6 +74,9 @@ public class TrackerService extends Service {
         rutaDataSource.open();
         idRuta = rutaDataSource.getIdRutaInProgress();
         rutaDataSource.close();
+
+        long minTime = SettingsConstants.getTiempo(this) * 1000;
+        long minDistance = SettingsConstants.getDistancia(this);
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         Looper.prepare();

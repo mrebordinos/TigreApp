@@ -1,6 +1,7 @@
 package com.mimotic.tigre.views;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -13,7 +14,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,7 +38,12 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.mimotic.tigre.R;
 import com.mimotic.tigre.common.LogTigre;
 import com.mimotic.tigre.common.settings.SettingsConstants;
+import com.mimotic.tigre.common.utils.Utils;
+import com.mimotic.tigre.model.Foto;
 import com.mimotic.tigre.model.GeoPunto;
+import com.mimotic.tigre.model.IPoint;
+import com.mimotic.tigre.model.db.datasource.IPointsDataSource;
+import com.mimotic.tigre.model.db.datasource.PhotosDataSource;
 import com.mimotic.tigre.model.db.datasource.PuntosDataSource;
 import com.mimotic.tigre.model.db.datasource.RutaDataSource;
 import com.mimotic.tigre.service.TrackerService;
@@ -58,6 +67,7 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
 
     private LinearLayout btnInitRuta;
     private LinearLayout btnFinishRuta;
+    private FloatingActionButton fab;
 
     private Location mCurrentLocation;
 
@@ -98,7 +108,7 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
         btnFinishRuta.setOnClickListener(this);
         btnTakePhoto.setOnClickListener(this);
 
-        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
         return rootView;
@@ -139,11 +149,13 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
         if(isRoutin){
             btnInitRuta.setVisibility(View.GONE);
             btnFinishRuta.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.VISIBLE);
 
             setLocationListenerUpdates();
         }else{
             btnInitRuta.setVisibility(View.VISIBLE);
             btnFinishRuta.setVisibility(View.GONE);
+            fab.setVisibility(View.GONE);
         }
 
     }
@@ -151,8 +163,8 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
 
 
     private void setLocationListenerUpdates(){
-        long minTime = 10 * 1000;
-        long minDistance = 10;
+        long minTime = SettingsConstants.getTiempo(getActivity()) * 1000;
+        long minDistance = SettingsConstants.getDistancia(getActivity());
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(getProviderName(), minTime, minDistance, locationListener);
 
@@ -215,8 +227,8 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
             }
         }
 
-        rectOptions.color(Color.BLUE);
-        rectOptions.width(2);
+        rectOptions.color(Utils.getColor(SettingsConstants.getColor(getActivity())));
+        rectOptions.width(Utils.getGrosor(SettingsConstants.getGrosor(getActivity())));
         // Get back the mutable Polyline
         Polyline polyline = googleMap.addPolyline(rectOptions);
     }
@@ -305,9 +317,61 @@ public class HomeFragment extends TigreFragment implements View.OnClickListener{
 
 
     private void addInfoPoint(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Crea un punto de interes");
+
+        // Set up the input
+        final EditText input = new EditText(getActivity());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint("contenido del poi");
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String contenido = input.getText().toString();
+                saveInfoPoint(contenido);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
 
     }
 
+
+    private void saveInfoPoint(String contenido){
+        int idRuta = SettingsConstants.getIdRuta(getActivity());
+
+        GeoPunto mpunto = new GeoPunto();
+        mpunto.setIdRuta(idRuta);
+        mpunto.setLatitude(mCurrentLocation.getLatitude());
+        mpunto.setLongitude(mCurrentLocation.getLongitude());
+        mpunto.setAltitude(mCurrentLocation.getAltitude());
+
+        PuntosDataSource puntosDataSource = new PuntosDataSource(getActivity());
+        puntosDataSource.open();
+        int idCoords = puntosDataSource.insertPoint(mpunto);
+        puntosDataSource.close();
+
+        IPoint mpoi = new IPoint();
+        mpoi.setTexto(contenido);
+        mpoi.setTimestamp(System.currentTimeMillis());
+        mpoi.setIdCoords(idCoords);
+        mpoi.setIdRuta(idRuta);
+
+        IPointsDataSource ipointsDataSource = new IPointsDataSource(getActivity());
+        ipointsDataSource.open();
+        ipointsDataSource.createIPoint(mpoi);
+        ipointsDataSource.close();
+    }
 
 
 

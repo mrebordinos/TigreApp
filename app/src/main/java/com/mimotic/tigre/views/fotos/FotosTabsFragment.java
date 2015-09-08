@@ -9,9 +9,6 @@ import android.view.ViewGroup;
 
 import com.mimotic.tigre.R;
 import com.mimotic.tigre.tools.TigreFragment;
-import com.mimotic.tigre.views.MapFragment;
-import com.mimotic.tigre.views.rutas.RutaDetalleFragment;
-import com.mimotic.tigre.views.rutas.RutaViewFragment;
 
 public class FotosTabsFragment extends TigreFragment{
 

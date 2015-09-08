@@ -103,7 +103,7 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_POINTS_TEXT
             + " text not null, "
             + COLUMN_POINTS_ICON
-            + " text not null, "
+            + " text, "
             + COLUMN_POINTS_TIMESTAMP
             + " text);";
 
@@ -111,8 +111,7 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "rutas.db";
 
-    public static final int DATABASE_VERSION = 2
-            ;
+    public static final int DATABASE_VERSION = 4;
 
     private static LocalSQLiteHelper mInstance = null;
 
@@ -141,7 +140,7 @@ public class LocalSQLiteHelper extends SQLiteOpenHelper {
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RUTAS);
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COORDS);
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PHOTOS);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
         db.setVersion(newVersion);
         onCreate(db);
     }

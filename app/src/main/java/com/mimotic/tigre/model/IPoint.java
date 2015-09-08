@@ -1,9 +1,9 @@
 package com.mimotic.tigre.model;
 
-public class Foto {
+public class IPoint {
 
     private int id;
-    private String url;
+    private String texto;
     private long timestamp;
     private int idRuta;
     private int idCoords;
@@ -20,12 +20,12 @@ public class Foto {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public long getTimestamp() {

@@ -59,10 +59,10 @@ public class FotosListFragment extends TigreFragment{
                     case 0:
                         // open
                         Toast.makeText(getActivity(), "Foto borrada", Toast.LENGTH_SHORT).show();
-//                        RutaDataSource rutaDataSource = new RutaDataSource(getActivity());
-//                        rutaDataSource.open();
-//                        rutaDataSource.deleteRutaById(rutas.get(position).getId());
-//                        rutaDataSource.close();
+                        PhotosDataSource photosDataSource = new PhotosDataSource(getActivity());
+                        photosDataSource.open();
+                        photosDataSource.deletePhotoById(fotos.get(position).getId());
+                        photosDataSource.close();
                         fotos.remove(position);
                         adapter.notifyDataSetChanged();
                         break;
